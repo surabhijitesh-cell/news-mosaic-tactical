@@ -1,0 +1,61 @@
+@import "tailwindcss";
+
+/* Theme and Base overrides */
+:root {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+  --surface: #1a1a1a;
+  --accent: #ff0000;
+  --accent-glow: rgba(255, 0, 0, 0.2);
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  overflow-x: hidden;
+}
+
+/* Custom Tactical Classes */
+.news-grid {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 p-2 h-screen;
+}
+
+.video-tile {
+  @apply relative bg-[var(--surface)] border border-white/5 overflow-hidden transition-all duration-300;
+}
+
+.video-tile.hovered {
+  @apply border-white/20 shadow-lg shadow-black/50;
+}
+
+.video-tile.active-audio {
+  @apply border-[var(--accent)] shadow-[0_0_15px_var(--accent-glow)];
+}
+
+.live-indicator {
+  @apply flex items-center gap-1.5 px-2 py-0.5 rounded bg-red-600 text-[10px] font-bold tracking-wider text-white;
+}
+
+.live-indicator span {
+  @apply w-1.5 h-1.5 rounded-full bg-white animate-pulse;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
