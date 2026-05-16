@@ -50,13 +50,13 @@ export const channels: Channel[] = [
     id: 'somoy-live',
     name: 'Somoy TV (Bangladesh)',
     category: 'hindi',
-    dmId: 'x7q8v7x', // Dailymotion Signal
+    dmId: 'R_Q-l1RId50', // Dailymotion Signal
   },
   {
     id: 'jamuna-live',
     name: 'Jamuna TV (Bangladesh)',
     category: 'hindi',
-    dmId: 'x8h5m9e', // Dailymotion Signal
+    dmId: 'G7O7OAt9rKk', // Dailymotion Signal
   },
   {
     id: 'india-tv',
