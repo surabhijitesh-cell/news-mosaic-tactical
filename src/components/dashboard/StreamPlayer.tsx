@@ -1,60 +1,24 @@
 'use client';
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 export const StreamPlayer = ({ videoId, muted = true }: any) => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const playerRef = useRef<any>(null);
   const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-    if (!videoId) return;
-
-    const loadAPI = () => {
-      if (!(window as any).YT) {
-        const tag = document.createElement('script');
-        tag.src = "https://www.youtube.com/iframe_api";
-        document.head.appendChild(tag);
-      }
-    };
-
-    const initPlayer = () => {
-      if ((window as any).YT && (window as any).YT.Player) {
-        playerRef.current = new (window as any).YT.Player(containerRef.current, {
-          videoId: videoId,
-          playerVars: {
-            autoplay: 1,
-            mute: muted ? 1 : 0,
-            controls: 0,
-            rel: 0,
-            modestbranding: 1,
-            enablejsapi: 1,
-            origin: window.location.origin
-          },
-          events: {
-            onReady: (e: any) => e.target.playVideo(),
-            onError: () => console.log(`Signal interference in slot: ${videoId}`)
-          }
-        });
-      } else {
-        setTimeout(initPlayer, 200);
-      }
-    };
-
-    loadAPI();
-    initPlayer();
-
-    return () => {
-      if (playerRef.current && playerRef.current.destroy) playerRef.current.destroy();
-    };
-  }, [videoId, muted]);
-
+  useEffect(() => { setIsMounted(true); }, []);
   if (!isMounted) return <div className="w-full h-full bg-black animate-pulse" />;
 
-  return (
-    <div className="w-full h-full bg-black">
-      <div ref={containerRef} className="w-full h-full" />
-    </div>
-  );
+  if (videoId) {
+    // 🛡️ THE STEALTH DOMAIN: Using youtube-nocookie to bypass regional tracking blocks
+    const embedUrl = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&mute=${muted ? 1 : 0}&rel=0&modestbranding=1&controls=0&enablejsapi=1&origin=${typeof window !== 'undefined' ? window.location.origin : ''}`;
+    
+    return (
+      <iframe
+        src={embedUrl}
+        className="w-full h-full border-0"
+        allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
+      />
+    );
+  }
+
+  return <div className="w-full h-full bg-black" />;
 };
