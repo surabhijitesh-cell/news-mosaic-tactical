@@ -3,25 +3,21 @@ export interface Channel {
   name: string;
   category: 'english' | 'hindi';
   videoId?: string;
-  channelId?: string;
-  dmId?: string;
-  webUrl?: string;
-  hlsUrl?: string;
 }
 
 export const channels: Channel[] = [
-  // English National (5)
+  // English National & Global (5)
   {
     id: 'cna-news',
-    name: 'CNA Global News',
+    name: 'CNA Global',
     category: 'english',
     videoId: 'XWq5kBlakcQ',
   },
   {
-    id: 'ndtv-india',
-    name: 'NDTV India',
-    category: 'hindi',
-    videoId: 'MN8p-Vrn6G0',
+    id: 'india-today',
+    name: 'India Today',
+    category: 'english',
+    videoId: '4vZFtAlhbWs',
   },
   {
     id: 'republic-english',
@@ -36,29 +32,29 @@ export const channels: Channel[] = [
     videoId: 'rfDx1HMvXbQ',
   },
   {
-    id: 'india-today',
-    name: 'India Today',
+    id: 'sky-news',
+    name: 'Sky News Global',
     category: 'english',
-    videoId: '4vZFtAlhbWs',
+    videoId: '9Auq9mYyitc',
   },
-  // Hindi National (4)
+  // Regional & Hindi (4)
   {
-    id: 'aaj-tak',
-    name: 'Aaj Tak',
+    id: 'ndtv-india',
+    name: 'NDTV India',
     category: 'hindi',
-    videoId: 'D9Bg7MPrFwU',
-  },
-  {
-    id: 'zee-news',
-    name: 'Zee News',
-    category: 'hindi',
-    videoId: 'VY_UrG9bkiA',
+    videoId: 'MN8p-Vrn6G0',
   },
   {
-    id: 'abp-news',
-    name: 'ABP News',
+    id: 'somoy-tv',
+    name: 'Somoy TV (Bangladesh)',
+    category: 'hindi', // Grouped with regional
+    videoId: 'kYvM_D_mXUo',
+  },
+  {
+    id: 'independent-tv',
+    name: 'Independent TV (Bangladesh)',
     category: 'hindi',
-    videoId: 'kZ0fwfSKoII',
+    videoId: 'S8L_3ZgC29M',
   },
   {
     id: 'india-tv',
