@@ -23,9 +23,20 @@ export const StreamPlayer = ({ videoId, streams, muted = true }: any) => {
             manifestLoadingMaxRetry: 5,
             manifestLoadingRetryDelay: 1000,
           });
-          const url = `https://corsproxy.io/?${encodeURIComponent(streams.primary)}`;
-          hls.loadSource(url);
+
+          // STEP 1: Try Direct Connection (Highest Quality/No Delay)
+          hls.loadSource(streams.primary);
           hls.attachMedia(videoRef.current!);
+          
+          hls.on(Hls.Events.ERROR, (event: any, data: any) => {
+            if (data.fatal) {
+              console.warn("Direct signal blocked. Initiating Proxy Bypass...");
+              // STEP 2: Fallback to CORS Proxy
+              const proxiedUrl = `https://corsproxy.io/?${encodeURIComponent(streams.primary)}`;
+              hls.loadSource(proxiedUrl);
+            }
+          });
+
           setHlsInstance(hls);
         } else if (videoRef.current!.canPlayType('application/vnd.apple.mpegurl')) {
           videoRef.current!.src = streams.primary;
@@ -57,18 +68,17 @@ export const StreamPlayer = ({ videoId, streams, muted = true }: any) => {
 
   // MODE B: STANDARD INTELLIGENCE (YouTube)
   if (videoId) {
-    // Simplified URL to ensure maximum compatibility across all 9 slots
     const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=${muted ? 1 : 0}&rel=0&controls=0&modestbranding=1`;
     return (
       <div className="w-full h-full bg-black">
         <iframe 
           src={embedUrl} 
           className="w-full h-full border-0" 
-          allow="autoplay; fullscreen; picture-in-picture" 
+          allow="autoplay; encrypted-media; fullscreen; picture-in-picture" 
         />
       </div>
     );
   }
 
-  return <div className="w-full h-full bg-[#050505]" />;
+  return <div className="w-full h-full bg-black" />;
 };
