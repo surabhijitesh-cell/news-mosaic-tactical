@@ -10,33 +10,40 @@ export const StreamPlayer = ({ videoId, muted = true }: any) => {
     setIsMounted(true);
     if (!videoId) return;
 
-    // 🛡️ THE MASTER HANDSHAKE: Loading the official YouTube Signature Script
-    const tag = document.createElement('script');
-    tag.src = "https://www.youtube.com/iframe_api";
-    const firstScriptTag = document.getElementsByTagName('script')[0];
-    firstScriptTag.parentNode?.insertBefore(tag, firstScriptTag);
+    // Load the YouTube API only once
+    if (!(window as any).YT) {
+      const tag = document.createElement('script');
+      tag.src = "https://www.youtube.com/iframe_api";
+      const firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode?.insertBefore(tag, firstScriptTag);
+    }
 
+    // 🛡️ THE MULTI-HANDSHAKE ENGINE
     let player: any;
-    (window as any).onYouTubeIframeAPIReady = () => {
-      player = new (window as any).YT.Player(containerRef.current, {
-        videoId: videoId,
-        playerVars: {
-          autoplay: 1,
-          mute: muted ? 1 : 0,
-          controls: 0,
-          rel: 0,
-          modestbranding: 1,
-          enablejsapi: 1,
-          origin: window.location.origin
-        },
-        events: {
-          onReady: (event: any) => event.target.playVideo()
-        }
-      });
+    const createPlayer = () => {
+      if ((window as any).YT && (window as any).YT.Player) {
+        player = new (window as any).YT.Player(containerRef.current, {
+          videoId: videoId,
+          playerVars: {
+            autoplay: 1,
+            mute: muted ? 1 : 0,
+            controls: 0,
+            rel: 0,
+            modestbranding: 1,
+            enablejsapi: 1,
+            origin: window.location.origin
+          },
+        });
+      } else {
+        // Retry if API isn't ready yet
+        setTimeout(createPlayer, 100);
+      }
     };
 
+    createPlayer();
+
     return () => {
-      if (player) player.destroy();
+      if (player && typeof player.destroy === 'function') player.destroy();
     };
   }, [videoId, muted]);
 
