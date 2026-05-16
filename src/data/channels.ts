@@ -5,18 +5,18 @@ export const channels: Channel[] = [
   { id: 'news18', name: 'News18 English', category: 'english', videoId: 'rfDx1HMvXbQ' },
   { id: 'al-jazeera', name: 'Al Jazeera', category: 'english', videoId: 'gCNeDWCI0vo' },
   { id: 'ndtv', name: 'NDTV India', category: 'hindi', videoId: 'MN8p-Vrn6G0' },
-  // 🇧🇩 THE RAW UPLINKS (Bypasses all geoblocks)
+    // 🇧🇩 THE RAW PROXY-FRIENDLY FEEDS
   { 
     id: 'somoy-raw', 
-    name: 'Somoy TV (Raw Feed)', 
+    name: 'Somoy TV (Raw)', 
     category: 'hindi', 
     hlsUrl: 'https://shaka.somoynews.tv/live/somoy.m3u8' 
   },
   { 
-    id: 'jamuna-raw', 
-    name: 'Jamuna TV (Raw Feed)', 
+    id: 'news24-raw', 
+    name: 'News24 (Raw)', 
     category: 'hindi', 
-    hlsUrl: 'https://live-cdn.jagobd.com/jamuna/index.m3u8' 
+    hlsUrl: 'https://live-cdn.jagobd.com/news24/index.m3u8' 
   },
   { id: 'india-tv', name: 'India TV', category: 'hindi', videoId: 'zzT9Xqfp2UM' },
 ];
