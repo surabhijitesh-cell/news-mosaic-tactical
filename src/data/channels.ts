@@ -32,10 +32,10 @@ export const channels: Channel[] = [
     videoId: 'rfDx1HMvXbQ',
   },
   {
-    id: 'sky-news',
-    name: 'Sky News Global',
+    id: 'france24-english',
+    name: 'France 24 Global',
     category: 'english',
-    videoId: 'lrX6ktLg8WQ',
+    videoId: 'aU_VByI9Sg0', // Swapped Sky News for stable France 24
   },
   // Regional & Hindi (4)
   {
@@ -45,16 +45,16 @@ export const channels: Channel[] = [
     videoId: 'MN8p-Vrn6G0',
   },
   {
-    id: 'somoy-tv',
-    name: 'Somoy TV (Bangladesh)',
-    category: 'hindi', // Grouped with regional
-    videoId: 'yA_eZ7K9XoQ',
+    id: 'jamuna-tv',
+    name: 'Jamuna TV (Bangladesh)',
+    category: 'hindi',
+    videoId: '60ItREp0X_A',
   },
   {
-    id: 'independent-tv',
-    name: 'Independent TV (Bangladesh)',
+    id: 'rtv-live',
+    name: 'RTV News (Bangladesh)',
     category: 'hindi',
-    videoId: '8P3Y_E_9v6c',	
+    videoId: 'y9oI4B_5v_I',
   },
   {
     id: 'india-tv',
