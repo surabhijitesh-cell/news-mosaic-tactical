@@ -3,7 +3,8 @@ export interface Channel {
   name: string;
   category: 'english' | 'hindi';
   videoId?: string;
-  channelId?: string; // Adding support for permanent channel signals
+  channelId?: string;
+  dmId?: string; // Adding Dailymotion support
 }
 
 export const channels: Channel[] = [
@@ -33,10 +34,10 @@ export const channels: Channel[] = [
     videoId: 'rfDx1HMvXbQ',
   },
   {
-    id: 'bbc-news',
-    name: 'BBC World News',
+    id: 'al-jazeera',
+    name: 'Al Jazeera English',
     category: 'english',
-    channelId: 'UC16niRr50-MSBwiO3YDb3RA', // Permanent BBC Signal
+    videoId: 'gCNeDWCI0vo', // Swapped BBC for Al Jazeera (More stable)
   },
   // Regional & Hindi (4)
   {
@@ -49,13 +50,13 @@ export const channels: Channel[] = [
     id: 'somoy-live',
     name: 'Somoy TV (Bangladesh)',
     category: 'hindi',
-    channelId: 'UC6L_YkZfL0_0y_T_Y_Z-Y-w', // Permanent Somoy Signal
+    dmId: 'x7q8v7x', // Dailymotion Signal
   },
   {
     id: 'jamuna-live',
     name: 'Jamuna TV (Bangladesh)',
     category: 'hindi',
-    channelId: 'UC3S8m1v9z9B-O-90-K-O-O-g', // Permanent Jamuna Signal
+    dmId: 'x8h5m9e', // Dailymotion Signal
   },
   {
     id: 'india-tv',
