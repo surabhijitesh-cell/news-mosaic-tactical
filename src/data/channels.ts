@@ -17,13 +17,13 @@ export const channels: Channel[] = [
     id: 'northeast-live', 
     name: 'Northeast Live (English)', 
     category: 'english', 
-    videoId: 'vIuLqH6mZ_w' 
+    videoId: 'Oms0ZfN4Kms' 
   },
   { 
     id: 'mizzima-tv', 
     name: 'Mizzima TV (Myanmar)', 
     category: 'english', 
-    videoId: 'fV3d_Y3v0S8' 
+    videoId: 'q_jCIsM9F2o' 
   },
   { id: 'india-tv', name: 'India TV', category: 'hindi', videoId: 'zzT9Xqfp2UM' },
 ];
