@@ -11,11 +11,11 @@ export const channels: Channel[] = [
     category: 'english', 
     videoId: 'Oms0ZfN4Kms' // Verified 24-hour English news from Guwahati
   },
-  { 
-    id: 'news24-raw', 
-    name: 'News24 (Raw)', 
-    category: 'hindi', 
-    hlsUrl: 'https://live-cdn.jagobd.com/news24/index.m3u8' 
+    { 
+    id: 'mizzima-tv', 
+    name: 'Mizzima TV (Myanmar)', 
+    category: 'english', 
+    videoId: 'q_jCIsM9F2o' // Verified active news source for Myanmar
   },
   { id: 'india-tv', name: 'India TV', category: 'hindi', videoId: 'zzT9Xqfp2UM' },
 ];
