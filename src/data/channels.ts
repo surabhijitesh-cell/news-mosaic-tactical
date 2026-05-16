@@ -7,16 +7,16 @@ export const channels = [
   { id: 'ndtv', name: 'NDTV India', category: 'hindi', videoId: 'MN8p-Vrn6G0' },
   // 🛡️ THE STEALTH REGIONAL FEEDS (Confirmed working for Embeds)
   { 
-    id: 'prag-news', 
-    name: 'Prag News (Assam/NE)', 
+    id: 'Assam Talks', 
+    name: 'Assam Talks(Assam/NE)', 
     category: 'hindi', 
-    videoId: 'vIuLqH6mZ_w' // High-uptime Assam Regional
+    videoId: 'pXU1b7X-M-E' // High-uptime Assam Regional
   },
   { 
-    id: 'dw-asia', 
-    name: 'DW News (Asia/Myanmar Focus)', 
+    id: 'I TV', 
+    name: 'Independednt TV', 
     category: 'english', 
-    videoId: 'vO-v_rLpxDk' // Best English coverage of Myanmar conflict
+    videoId: 'S8L_3ZgC29M' // Best English coverage of Myanmar conflict
   },
   { id: 'india-tv', name: 'India TV', category: 'hindi', videoId: 'zzT9Xqfp2UM' },
 ];
