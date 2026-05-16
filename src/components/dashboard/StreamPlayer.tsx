@@ -4,75 +4,71 @@ import React, { useEffect, useRef, useState } from 'react';
 
 export const StreamPlayer = ({ videoId, streams, muted = true }: any) => {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [streamIndex, setStreamIndex] = useState(-1); // -1 is primary, 0+ are backups
   const [isMounted, setIsMounted] = useState(false);
-
-  // Get current active URL (Primary or Backup)
-  const getActiveUrl = () => {
-    if (!streams) return null;
-    const url = streamIndex === -1 ? streams.primary : streams.backups[streamIndex];
-    // Apply CORS Proxy to bypass server-side blocks
-    return `https://corsproxy.io/?${encodeURIComponent(url)}`;
-  };
+  const [hlsInstance, setHlsInstance] = useState<any>(null);
 
   useEffect(() => {
     setIsMounted(true);
-    if (!streams || !videoRef.current) return;
+  }, []);
 
-    const script = document.createElement('script');
-    script.src = "https://cdn.jsdelivr.net/npm/hls.js@latest";
-    script.onload = () => {
-      const Hls = (window as any).Hls;
-      if (Hls.isSupported()) {
-        const hls = new Hls({
-          manifestLoadingRetryDelay: 1000,
-          manifestLoadingMaxRetry: 3,
-        });
-        
-        const loadSignal = () => {
-          const url = getActiveUrl();
-          if (url) {
-            hls.loadSource(url);
-            hls.attachMedia(videoRef.current!);
-          }
-        };
-
-        hls.on(Hls.Events.ERROR, (event: any, data: any) => {
-          if (data.fatal) {
-            console.warn("Signal interference. Attempting failover...");
-            if (streamIndex < (streams.backups.length - 1)) {
-              setStreamIndex(prev => prev + 1);
-            }
-          }
-        });
-
-        loadSignal();
-        return () => hls.destroy();
-      }
+  useEffect(() => {
+    if (isMounted && streams && videoRef.current) {
+      // 🛰️ DYNAMIC SATELLITE DECODER (HLS)
+      const script = document.createElement('script');
+      script.src = "https://cdn.jsdelivr.net/npm/hls.js@latest";
+      script.onload = () => {
+        const Hls = (window as any).Hls;
+        if (Hls.isSupported()) {
+          const hls = new Hls({
+            manifestLoadingMaxRetry: 5,
+            manifestLoadingRetryDelay: 1000,
+          });
+          const url = `https://corsproxy.io/?${encodeURIComponent(streams.primary)}`;
+          hls.loadSource(url);
+          hls.attachMedia(videoRef.current!);
+          setHlsInstance(hls);
+        } else if (videoRef.current!.canPlayType('application/vnd.apple.mpegurl')) {
+          videoRef.current!.src = streams.primary;
+        }
+      };
+      document.head.appendChild(script);
+    }
+    return () => {
+      if (hlsInstance) hlsInstance.destroy();
     };
-    document.head.appendChild(script);
-  }, [streams, streamIndex]);
+  }, [isMounted, streams]);
 
   if (!isMounted) return <div className="w-full h-full bg-black animate-pulse" />;
 
-  // HLS Rendering Mode
+  // MODE A: SATELLITE SIGNAL (Jamuna/Somoy)
   if (streams) {
     return (
-      <video 
-        ref={videoRef}
-        autoPlay 
-        muted={muted} 
-        playsInline 
-        className="w-full h-full object-cover bg-black"
-      />
+      <div className="w-full h-full bg-black">
+        <video 
+          ref={videoRef}
+          autoPlay 
+          muted={muted} 
+          playsInline 
+          className="w-full h-full object-cover"
+        />
+      </div>
     );
   }
 
-  // Legacy YouTube Mode
+  // MODE B: STANDARD INTELLIGENCE (YouTube)
   if (videoId) {
-    const embedUrl = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&mute=${muted ? 1 : 0}&rel=0&controls=0&modestbranding=1&enablejsapi=1`;
-    return <iframe src={embedUrl} className="w-full h-full border-0" allow="autoplay; fullscreen" />;
+    // Simplified URL to ensure maximum compatibility across all 9 slots
+    const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=${muted ? 1 : 0}&rel=0&controls=0&modestbranding=1`;
+    return (
+      <div className="w-full h-full bg-black">
+        <iframe 
+          src={embedUrl} 
+          className="w-full h-full border-0" 
+          allow="autoplay; fullscreen; picture-in-picture" 
+        />
+      </div>
+    );
   }
 
-  return <div className="w-full h-full bg-black" />;
+  return <div className="w-full h-full bg-[#050505]" />;
 };
