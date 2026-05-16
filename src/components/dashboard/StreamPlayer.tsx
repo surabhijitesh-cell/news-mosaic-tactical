@@ -31,21 +31,9 @@ export const StreamPlayer: React.FC<StreamPlayerProps> = ({
     return <div className="w-full h-full bg-black animate-pulse" />;
   }
 
-  // Helper to extract YouTube ID if a full URL was provided
-  const getYouTubeId = (id: string) => {
-    if (id.includes('youtube.com/watch?v=')) {
-      return id.split('v=')[1]?.split('&')[0];
-    }
-    if (id.includes('youtu.be/')) {
-      return id.split('youtu.be/')[1]?.split('?')[0];
-    }
-    return id;
-  };
-
-  // Priority 1: YouTube Embed (Supports remote muting)
-  if (videoId) {
-    const cleanId = getYouTubeId(videoId);
-    const embedUrl = `https://www.youtube.com/embed/${cleanId}?autoplay=1&mute=${muted ? 1 : 0}&rel=0&modestbranding=1&controls=0&showinfo=0&enablejsapi=1`;
+  // Priority 1: Permanent Channel ID (Most stable for Live News)
+  if (channelId) {
+    const embedUrl = `https://www.youtube.com/embed/live_stream?channel=${channelId}&autoplay=1&mute=${muted ? 1 : 0}&rel=0&modestbranding=1&controls=0&enablejsapi=1`;
     
     return (
       <div className="w-full h-full bg-black relative">
@@ -53,95 +41,29 @@ export const StreamPlayer: React.FC<StreamPlayerProps> = ({
           src={embedUrl}
           className="w-full h-full border-0"
           allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
-          title="YouTube Source"
+          title="YouTube Live Channel"
         />
       </div>
     );
   }
 
-  // Priority 2: Direct Tactical Web Zoom (Legacy Fallback)
-  if (webUrl) {
-    return (
-      <div className="w-full h-full bg-black relative overflow-hidden">
-        <iframe
-          src={webUrl}
-          className="absolute border-0"
-          style={{
-            width: '240%',
-            height: '240%',
-            top: '-65%',
-            left: '-70%',
-            transform: 'scale(1)',
-          }}
-          allow="autoplay; encrypted-media; fullscreen"
-          title="Direct Source"
-        />
-        <div className="absolute inset-0 z-10 pointer-events-none" />
-      </div>
-    );
-  }
-
-  // Priority 2: Direct Tactical Web Zoom (Fallback only)
-  if (webUrl) {
-    return (
-      <div className="w-full h-full bg-black relative overflow-hidden">
-        <iframe
-          src={webUrl}
-          className="absolute border-0"
-          style={{
-            width: '240%',
-            height: '240%',
-            top: '-65%',
-            left: '-70%',
-            transform: 'scale(1)',
-          }}
-          allow="autoplay; encrypted-media; fullscreen"
-          title="Direct Source"
-        />
-        <div className="absolute inset-0 z-10 pointer-events-none" />
-      </div>
-    );
-  }
-
-  // Priority 2: Dailymotion Embed
-  if (dmId) {
-    const embedUrl = `https://www.dailymotion.com/embed/video/${dmId}?autoplay=1&mute=${muted ? 1 : 0}&controls=0&ui-start-screen-info=0`;
+  // Priority 2: Standard YouTube Video ID
+  if (videoId) {
+    const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=${muted ? 1 : 0}&rel=0&modestbranding=1&controls=0&showinfo=0&enablejsapi=1`;
     
     return (
       <div className="w-full h-full bg-black relative">
         <iframe
           src={embedUrl}
           className="w-full h-full border-0"
-          allow="autoplay; encrypted-media; fullscreen"
-          title="Dailymotion Source"
+          allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
+          title="YouTube Video Source"
         />
-        <div className="absolute inset-0 z-10" />
       </div>
     );
   }
 
-  // Priority 3: Tactical Web Zoom Frame
-  if (webUrl) {
-    return (
-      <div className="w-full h-full bg-black relative overflow-hidden">
-        <iframe
-          src={webUrl}
-          className="absolute border-0 pointer-events-none"
-          style={{
-            width: '160%', // Even more zoom for better player focus
-            height: '160%',
-            top: '-30%',
-            left: '-30%',
-            transform: 'scale(1)',
-          }}
-          allow="autoplay; encrypted-media; fullscreen"
-          title="Direct Source"
-        />
-        <div className="absolute inset-0 z-10 bg-transparent" />
-      </div>
-    );
-  }
-
+  // Fallback for empty slots
   return (
     <div className="w-full h-full bg-[#080808] flex items-center justify-center border border-white/5">
        <div className="flex flex-col items-center gap-2">
