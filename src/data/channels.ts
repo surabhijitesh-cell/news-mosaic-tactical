@@ -12,18 +12,18 @@ export const channels: Channel[] = [
   { id: 'news18', name: 'News18 English', category: 'english', videoId: 'rfDx1HMvXbQ' },
   { id: 'al-jazeera', name: 'Al Jazeera', category: 'english', videoId: 'gCNeDWCI0vo' },
   { id: 'ndtv', name: 'NDTV India', category: 'hindi', videoId: 'MN8p-Vrn6G0' },
-  // 🛰️ NORTHEAST & MYANMAR THEATER
+    // 🛰️ MASTER HANDSHAKE SIGNALS
   { 
     id: 'northeast-live', 
     name: 'Northeast Live (English)', 
     category: 'english', 
-    videoId: 'vIuLqH6mZ_w' // Fresh Signal Lock
+    videoId: 'vIuLqH6mZ_w' 
   },
   { 
     id: 'mizzima-tv', 
     name: 'Mizzima TV (Myanmar)', 
     category: 'english', 
-    videoId: 'q_jCIsM9F2o' // Fresh Signal Lock
+    videoId: 'fV3d_Y3v0S8' 
   },
   { id: 'india-tv', name: 'India TV', category: 'hindi', videoId: 'zzT9Xqfp2UM' },
 ];
