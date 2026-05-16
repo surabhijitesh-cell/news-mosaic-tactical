@@ -3,6 +3,7 @@ export interface Channel {
   name: string;
   category: 'english' | 'hindi';
   videoId?: string;
+  channelId?: string; // Adding support for permanent channel signals
 }
 
 export const channels: Channel[] = [
@@ -32,10 +33,10 @@ export const channels: Channel[] = [
     videoId: 'rfDx1HMvXbQ',
   },
   {
-    id: 'france24-english',
-    name: 'France 24 Global',
+    id: 'bbc-news',
+    name: 'BBC World News',
     category: 'english',
-    videoId: 'aU_VByI9Sg0', // Swapped Sky News for stable France 24
+    channelId: 'UC16niRr50-MSBwiO3YDb3RA', // Permanent BBC Signal
   },
   // Regional & Hindi (4)
   {
@@ -45,16 +46,16 @@ export const channels: Channel[] = [
     videoId: 'MN8p-Vrn6G0',
   },
   {
-    id: 'jamuna-tv',
-    name: 'Jamuna TV (Bangladesh)',
+    id: 'somoy-live',
+    name: 'Somoy TV (Bangladesh)',
     category: 'hindi',
-    videoId: '60ItREp0X_A',
+    channelId: 'UC6L_YkZfL0_0y_T_Y_Z-Y-w', // Permanent Somoy Signal
   },
   {
-    id: 'rtv-live',
-    name: 'RTV News (Bangladesh)',
+    id: 'jamuna-live',
+    name: 'Jamuna TV (Bangladesh)',
     category: 'hindi',
-    videoId: 'y9oI4B_5v_I',
+    channelId: 'UC3S8m1v9z9B-O-90-K-O-O-g', // Permanent Jamuna Signal
   },
   {
     id: 'india-tv',
