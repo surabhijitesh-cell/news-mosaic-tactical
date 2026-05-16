@@ -1,3 +1,10 @@
+export interface Channel {
+  id: string;
+  name: string;
+  category: 'english' | 'hindi';
+  videoId?: string;
+}
+
 export const channels: Channel[] = [
   { id: 'cna', name: 'CNA Global', category: 'english', videoId: 'XWq5kBlakcQ' },
   { id: 'india-today', name: 'India Today', category: 'english', videoId: '4vZFtAlhbWs' },
@@ -5,17 +12,18 @@ export const channels: Channel[] = [
   { id: 'news18', name: 'News18 English', category: 'english', videoId: 'rfDx1HMvXbQ' },
   { id: 'al-jazeera', name: 'Al Jazeera', category: 'english', videoId: 'gCNeDWCI0vo' },
   { id: 'ndtv', name: 'NDTV India', category: 'hindi', videoId: 'MN8p-Vrn6G0' },
-     { 
+  // 🛰️ NORTHEAST & MYANMAR THEATER
+  { 
     id: 'northeast-live', 
     name: 'Northeast Live (English)', 
     category: 'english', 
-    videoId: 'Oms0ZfN4Kms' // Verified 24-hour English news from Guwahati
+    videoId: 'vIuLqH6mZ_w' // Fresh Signal Lock
   },
-    { 
+  { 
     id: 'mizzima-tv', 
     name: 'Mizzima TV (Myanmar)', 
     category: 'english', 
-    videoId: 'q_jCIsM9F2o' // Verified active news source for Myanmar
+    videoId: 'q_jCIsM9F2o' // Fresh Signal Lock
   },
   { id: 'india-tv', name: 'India TV', category: 'hindi', videoId: 'zzT9Xqfp2UM' },
 ];
