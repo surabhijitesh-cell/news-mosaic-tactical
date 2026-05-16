@@ -1,22 +1,51 @@
-export const channels = [
-  { id: 'cna', name: 'CNA Global', category: 'english', videoId: 'XWq5kBlakcQ' },
-  { id: 'india-today', name: 'India Today', category: 'english', videoId: '4vZFtAlhbWs' },
-  { id: 'republic', name: 'Republic TV', category: 'english', videoId: 'AYOrOtIhjrk' },
-  { id: 'news18', name: 'News18 English', category: 'english', videoId: 'rfDx1HMvXbQ' },
-  { id: 'al-jazeera', name: 'Al Jazeera', category: 'english', videoId: 'gCNeDWCI0vo' },
-  { id: 'ndtv', name: 'NDTV India', category: 'hindi', videoId: 'MN8p-Vrn6G0' },
-  // 🛡️ THE STEALTH REGIONAL FEEDS (Confirmed working for Embeds)
+export interface StreamConfig {
+  primary: string;
+  backups: string[];
+}
+
+export interface Channel {
+  id: string | number;
+  name: string;
+  category: 'english' | 'hindi' | 'regional';
+  videoId?: string;
+  streams?: StreamConfig;
+}
+
+export const channels: Channel[] = [
+  { id: 1, name: 'CNA Global', category: 'english', videoId: 'XWq5kBlakcQ' },
+  { id: 2, name: 'India Today', category: 'english', videoId: '4vZFtAlhbWs' },
+  { id: 3, name: 'Republic TV', category: 'english', videoId: 'AYOrOtIhjrk' },
+  { id: 4, name: 'News18 English', category: 'english', videoId: 'rfDx1HMvXbQ' },
+  { id: 5, name: 'Al Jazeera', category: 'english', videoId: 'gCNeDWCI0vo' },
+  { id: 6, name: 'NDTV India', category: 'hindi', videoId: 'MN8p-Vrn6G0' },
+  
+  // 🇧🇩 MOSAIC SLOT 7: JAMUNA TV (BANGLADESH)
   { 
-    id: 'Assam Talks', 
-    name: 'Assam Talks(Assam/NE)', 
-    category: 'hindi', 
-    videoId: 'pXU1b7X-M-E' // High-uptime Assam Regional
+    id: 7, 
+    name: 'Jamuna TV', 
+    category: 'regional',
+    streams: {
+      primary: "https://live-cdn.jagobd.com/jamuna/index.m3u8",
+      backups: [
+        "https://jamunatv.fstream.online/jamunatv/index.m3u8",
+        "https://shaka.somoynews.tv/live/somoy.m3u8" // Emergency backup
+      ]
+    }
   },
+  
+  // 🇧🇩 MOSAIC SLOT 8: SOMOY TV (BANGLADESH)
   { 
-    id: 'I TV', 
-    name: 'Independednt TV', 
-    category: 'english', 
-    videoId: 'S8L_3ZgC29M' // Best English coverage of Myanmar conflict
+    id: 8, 
+    name: 'Somoy TV', 
+    category: 'regional',
+    streams: {
+      primary: "https://shaka.somoynews.tv/live/somoy.m3u8",
+      backups: [
+        "https://somoytv.fstream.online/somoytv/index.m3u8",
+        "https://live-cdn.jagobd.com/somoy/index.m3u8"
+      ]
+    }
   },
-  { id: 'india-tv', name: 'India TV', category: 'hindi', videoId: 'zzT9Xqfp2UM' },
+  
+  { id: 9, name: 'India TV', category: 'hindi', videoId: 'zzT9Xqfp2UM' },
 ];
