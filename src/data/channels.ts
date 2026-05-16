@@ -35,7 +35,7 @@ export const channels: Channel[] = [
     id: 'sky-news',
     name: 'Sky News Global',
     category: 'english',
-    videoId: '9Auq9mYyitc',
+    videoId: 'lrX6ktLg8WQ',
   },
   // Regional & Hindi (4)
   {
@@ -48,13 +48,13 @@ export const channels: Channel[] = [
     id: 'somoy-tv',
     name: 'Somoy TV (Bangladesh)',
     category: 'hindi', // Grouped with regional
-    videoId: 'kYvM_D_mXUo',
+    videoId: 'yA_eZ7K9XoQ',
   },
   {
     id: 'independent-tv',
     name: 'Independent TV (Bangladesh)',
     category: 'hindi',
-    videoId: 'S8L_3ZgC29M',
+    videoId: '8P3Y_E_9v6c',	
   },
   {
     id: 'india-tv',
