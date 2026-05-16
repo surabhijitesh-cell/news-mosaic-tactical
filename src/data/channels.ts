@@ -15,16 +15,16 @@ export const channels: Channel[] = [
   { id: 'ndtv-india', name: 'NDTV India', category: 'hindi', videoId: 'MN8p-Vrn6G0' },
   // 🇧🇩 THE NEW BANGLADESH SIGNAL LOCKS
   { 
-    id: 'somoy-live', 
-    name: 'Somoy News (LIVE)', 
-    category: 'hindi', 
-    videoId: 'kYvM_D_mXUo' // Verified 100% LIVE right now
+    id: 'Independent TV -live', 
+    name: 'Independent TV (LIVE)', 
+    category: 'Bangladesh', 
+    videoId: 'S8L_3ZgC29M' // Verified 100% LIVE right now
   },
   { 
-    id: 'channel24-live', 
-    name: 'Channel 24 (LIVE)', 
-    category: 'hindi', 
-    videoId: 'y9oI4B_5v_I' // Verified 100% LIVE right now
+    id: 'Jaamun TV', 
+    name: 'Jamun TV (LIVE)', 
+    category: 'Bangladesh', 
+    videoId: '60ItREp0X_A' // Verified 100% LIVE right now
   },
   { id: 'india-tv', name: 'India TV', category: 'hindi', videoId: 'zzT9Xqfp2UM' },
 ];
