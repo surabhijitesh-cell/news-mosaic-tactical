@@ -4,25 +4,24 @@ import React, { useEffect, useRef, useState } from 'react';
 
 export const StreamPlayer = ({ videoId, muted = true }: any) => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const playerRef = useRef<any>(null);
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
     setIsMounted(true);
     if (!videoId) return;
 
-    // Load the YouTube API only once
-    if (!(window as any).YT) {
-      const tag = document.createElement('script');
-      tag.src = "https://www.youtube.com/iframe_api";
-      const firstScriptTag = document.getElementsByTagName('script')[0];
-      firstScriptTag.parentNode?.insertBefore(tag, firstScriptTag);
-    }
+    const loadAPI = () => {
+      if (!(window as any).YT) {
+        const tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        document.head.appendChild(tag);
+      }
+    };
 
-    // 🛡️ THE MULTI-HANDSHAKE ENGINE
-    let player: any;
-    const createPlayer = () => {
+    const initPlayer = () => {
       if ((window as any).YT && (window as any).YT.Player) {
-        player = new (window as any).YT.Player(containerRef.current, {
+        playerRef.current = new (window as any).YT.Player(containerRef.current, {
           videoId: videoId,
           playerVars: {
             autoplay: 1,
@@ -33,17 +32,21 @@ export const StreamPlayer = ({ videoId, muted = true }: any) => {
             enablejsapi: 1,
             origin: window.location.origin
           },
+          events: {
+            onReady: (e: any) => e.target.playVideo(),
+            onError: () => console.log(`Signal interference in slot: ${videoId}`)
+          }
         });
       } else {
-        // Retry if API isn't ready yet
-        setTimeout(createPlayer, 100);
+        setTimeout(initPlayer, 200);
       }
     };
 
-    createPlayer();
+    loadAPI();
+    initPlayer();
 
     return () => {
-      if (player && typeof player.destroy === 'function') player.destroy();
+      if (playerRef.current && playerRef.current.destroy) playerRef.current.destroy();
     };
   }, [videoId, muted]);
 
