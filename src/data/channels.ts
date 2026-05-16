@@ -5,12 +5,11 @@ export const channels: Channel[] = [
   { id: 'news18', name: 'News18 English', category: 'english', videoId: 'rfDx1HMvXbQ' },
   { id: 'al-jazeera', name: 'Al Jazeera', category: 'english', videoId: 'gCNeDWCI0vo' },
   { id: 'ndtv', name: 'NDTV India', category: 'hindi', videoId: 'MN8p-Vrn6G0' },
-    // 🇧🇩 THE RAW PROXY-FRIENDLY FEEDS
-  { 
-    id: 'somoy-raw', 
-    name: 'Somoy TV (Raw)', 
-    category: 'hindi', 
-    hlsUrl: 'https://shaka.somoynews.tv/live/somoy.m3u8' 
+     { 
+    id: 'northeast-live', 
+    name: 'Northeast Live (English)', 
+    category: 'english', 
+    videoId: 'Oms0ZfN4Kms' // Verified 24-hour English news from Guwahati
   },
   { 
     id: 'news24-raw', 
