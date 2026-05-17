@@ -3,6 +3,14 @@ export interface StreamConfig {
   backups: string[];
 }
 
+export interface TranslationConfig {
+  enabled: boolean;
+  sourceLanguage: string;
+  targetLanguage: string;
+  subtitleOverlay: boolean;
+  voiceTranslation: boolean;
+}
+
 export interface Channel {
   id: string;
   name: string;
@@ -13,6 +21,7 @@ export interface Channel {
   webUrl?: string;
   hlsUrl?: string;
   streams?: StreamConfig;
+  translation?: TranslationConfig;
 }
 
 export const channels: Channel[] = [
@@ -60,6 +69,13 @@ export const channels: Channel[] = [
     name: 'Independent TV',
     category: 'local',
     videoId: 'BnGq0K0HmR4',
+    translation: {
+      enabled: true,
+      sourceLanguage: 'bn',
+      targetLanguage: 'en',
+      subtitleOverlay: true,
+      voiceTranslation: false
+    }
   },
   // SLOT 8: Channel i (Bangladesh Live News)
   {
@@ -67,6 +83,13 @@ export const channels: Channel[] = [
     name: 'Channel i',
     category: 'local',
     videoId: '39l8BwueQU0',
+    translation: {
+      enabled: true,
+      sourceLanguage: 'bn',
+      targetLanguage: 'en',
+      subtitleOverlay: true,
+      voiceTranslation: false
+    }
   },
   {
     id: 'india-tv',
