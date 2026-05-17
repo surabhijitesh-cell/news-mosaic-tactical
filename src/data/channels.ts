@@ -4,42 +4,86 @@ export interface StreamConfig {
 }
 
 export interface Channel {
-  id: string | number;
+  id: string;
   name: string;
-  category: 'english' | 'hindi' | 'regional';
+  category: 'english' | 'hindi' | 'regional' | 'local';
   videoId?: string;
+  channelId?: string;
+  dmId?: string;
+  webUrl?: string;
+  hlsUrl?: string;
   streams?: StreamConfig;
 }
 
 export const channels: Channel[] = [
-  { id: 1, name: 'CNA Global', category: 'english', videoId: 'XWq5kBlakcQ' },
-  { id: 2, name: 'India Today', category: 'english', videoId: '4vZFtAlhbWs' },
-  { id: 3, name: 'Republic TV', category: 'english', videoId: 'AYOrOtIhjrk' },
-  { id: 4, name: 'News18 English', category: 'english', videoId: 'rfDx1HMvXbQ' },
-  { id: 5, name: 'Al Jazeera', category: 'english', videoId: 'gCNeDWCI0vo' },
-  { id: 6, name: 'NDTV India', category: 'hindi', videoId: 'MN8p-Vrn6G0' },
-  
-    // 🇧🇩 MOSAIC SLOT 7: JAMUNA TV (Master Signal)
-  { 
-    id: 7, 
-    name: 'Jamuna TV', 
-    category: 'regional',
+  // English National (5)
+  {
+    id: 'cna-news',
+    name: 'CNA Global News',
+    category: 'english',
+    videoId: 'XWq5kBlakcQ',
+  },
+  {
+    id: 'ndtv-india',
+    name: 'NDTV India',
+    category: 'hindi',
+    videoId: 'MN8p-Vrn6G0',
+  },
+  {
+    id: 'republic-english',
+    name: 'Republic TV',
+    category: 'english',
+    videoId: 'AYOrOtIhjrk',
+  },
+  {
+    id: 'news18-english',
+    name: 'News18 English',
+    category: 'english',
+    videoId: 'rfDx1HMvXbQ',
+  },
+  {
+    id: 'india-today',
+    name: 'India Today',
+    category: 'english',
+    videoId: '4vZFtAlhbWs',
+  },
+  // Hindi National / Regional
+  {
+    id: 'aaj-tak',
+    name: 'Aaj Tak',
+    category: 'local',
+    videoId: 'D9Bg7MPrFwU',
+  },
+  // SLOT 7: Jamuna TV
+  {
+    id: 'jamuna-tv',
+    name: 'Jamuna TV',
+    category: 'local',
     streams: {
-      primary: "https://jamuna.fstream.online/jamunatv/index.m3u8",
-      backups: ["https://live-cdn.jagobd.com/jamuna/index.m3u8"]
+      primary: "https://jamunatv.fstream.online/jamunatv/index.m3u8",
+      backups: [
+        "https://live-cdn.jagobd.com/jamuna/index.m3u8",
+        "https://jamuna-live-cdn.jagobd.com/c3VydmVyX8RpbWU9MTcvMDQvMjAxNCAxMTo1Mjo0MSBBTSZoYXNoPWEwMDU0ODYzMTRiMmNmYTU1OWUyMWZlYWNjM2YwZmFi/jamuna/index.m3u8"
+      ]
     }
   },
-  
-  // 🇧🇩 MOSAIC SLOT 8: SOMOY TV (Master Signal)
-  { 
-    id: 8, 
-    name: 'Somoy TV', 
-    category: 'regional',
+  // SLOT 8: Somoy TV
+  {
+    id: 'somoy-tv',
+    name: 'Somoy TV',
+    category: 'local',
     streams: {
-      primary: "https://shaka.somoynews.tv/live/somoy.m3u8",
-      backups: ["https://somoytv.fstream.online/somoytv/index.m3u8"]
+      primary: "https://somoytv.fstream.online/somoytv/index.m3u8",
+      backups: [
+        "https://shaka.somoynews.tv/live/somoy.m3u8",
+        "https://live-cdn.jagobd.com/somoy/index.m3u8"
+      ]
     }
   },
-  
-  { id: 9, name: 'India TV', category: 'hindi', videoId: 'zzT9Xqfp2UM' },
+  {
+    id: 'india-tv',
+    name: 'India TV',
+    category: 'local',
+    videoId: 'zzT9Xqfp2UM',
+  },
 ];
