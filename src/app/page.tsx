@@ -162,7 +162,7 @@ export default function Home() {
                 </div>
               </div>
               <div className="w-full h-full grayscale-[0.2] group-hover:grayscale-0 transition-all duration-500">
-                <StreamPlayer videoId={channel.videoId} channelId={channel.channelId} dmId={channel.dmId} hlsUrl={channel.hlsUrl} webUrl={channel.webUrl} muted={!isActive} />
+                <StreamPlayer videoId={channel.videoId} channelId={channel.channelId} dmId={channel.dmId} hlsUrl={channel.hlsUrl} webUrl={channel.webUrl} streams={channel.streams} muted={!isActive} />
               </div>
               <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-white/5 overflow-hidden">
                  {isActive && <div className="h-full bg-red-600 w-full animate-pulse" />}
@@ -191,7 +191,7 @@ export default function Home() {
         <div className="fixed inset-0 z-[100] bg-black animate-in fade-in zoom-in duration-300">
           <div className="absolute inset-0 flex items-center justify-center p-4">
              <div className="w-full h-full max-w-[90vw] max-h-[90vh] relative border border-white/10">
-                <StreamPlayer videoId={focusedChannel.videoId} channelId={focusedChannel.channelId} dmId={focusedChannel.dmId} hlsUrl={focusedChannel.hlsUrl} webUrl={focusedChannel.webUrl} muted={false} />
+                <StreamPlayer videoId={focusedChannel.videoId} channelId={focusedChannel.channelId} dmId={focusedChannel.dmId} hlsUrl={focusedChannel.hlsUrl} webUrl={focusedChannel.webUrl} streams={focusedChannel.streams} muted={false} />
                 <div className="absolute top-8 right-8 pointer-events-auto">
                    <button onClick={() => setFocusedId(null)} className="p-2 bg-white/5 hover:bg-red-600 hover:text-white text-white/40 rounded-full transition-all border border-white/10">
                      <X className="w-6 h-6" />
