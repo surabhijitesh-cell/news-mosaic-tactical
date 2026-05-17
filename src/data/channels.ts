@@ -54,19 +54,19 @@ export const channels: Channel[] = [
     category: 'local',
     videoId: 'D9Bg7MPrFwU',
   },
-  // SLOT 7: Independent TV (Bangladesh 24/7)
+  // SLOT 7: Independent TV (Bangladesh Live 24/7)
   {
     id: 'independent-tv',
     name: 'Independent TV',
     category: 'local',
-    channelId: 'UC1kEq9zZAXI4z2lIav-h5zQ',
+    videoId: 'BnGq0K0HmR4',
   },
-  // SLOT 8: Channel 24 (Bangladesh 24/7)
+  // SLOT 8: Channel i (Bangladesh Live News)
   {
-    id: 'channel-24',
-    name: 'Channel 24',
+    id: 'channel-i',
+    name: 'Channel i',
     category: 'local',
-    channelId: 'UC4sL1PqH_dJmI3F9Vj15NlA',
+    videoId: '39l8BwueQU0',
   },
   {
     id: 'india-tv',
