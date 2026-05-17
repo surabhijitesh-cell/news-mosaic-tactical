@@ -134,7 +134,7 @@ export const StreamPlayer: React.FC<StreamPlayerProps> = ({
     return id;
   };
 
-  // Priority 1: YouTube Embed (Supports remote muting)
+  // Priority 2: YouTube Embed (Specific Video)
   if (videoId) {
     const cleanId = getYouTubeId(videoId);
     const embedUrl = `https://www.youtube.com/embed/${cleanId}?autoplay=1&mute=${muted ? 1 : 0}&rel=0&modestbranding=1&controls=0&showinfo=0&enablejsapi=1`;
@@ -151,7 +151,23 @@ export const StreamPlayer: React.FC<StreamPlayerProps> = ({
     );
   }
 
-  // Priority 2: Direct Tactical Web Zoom (Legacy Fallback)
+  // Priority 3: YouTube Embed (Channel Live Stream - AUTO UPDATES)
+  if (channelId) {
+    const embedUrl = `https://www.youtube.com/embed/live_stream?channel=${channelId}&autoplay=1&mute=${muted ? 1 : 0}&rel=0&modestbranding=1&controls=0&showinfo=0&enablejsapi=1`;
+    
+    return (
+      <div className="w-full h-full bg-black relative">
+        <iframe
+          src={embedUrl}
+          className="w-full h-full border-0"
+          allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
+          title="YouTube Channel Live Source"
+        />
+      </div>
+    );
+  }
+
+  // Priority 4: Direct Tactical Web Zoom (Legacy Fallback)
   if (webUrl) {
     return (
       <div className="w-full h-full bg-black relative overflow-hidden">
@@ -173,7 +189,7 @@ export const StreamPlayer: React.FC<StreamPlayerProps> = ({
     );
   }
 
-  // Priority 3: Dailymotion Embed
+  // Priority 5: Dailymotion Embed
   if (dmId) {
     const embedUrl = `https://www.dailymotion.com/embed/video/${dmId}?autoplay=1&mute=${muted ? 1 : 0}&controls=0&ui-start-screen-info=0`;
     
@@ -194,7 +210,7 @@ export const StreamPlayer: React.FC<StreamPlayerProps> = ({
     <div className="w-full h-full bg-[#080808] flex items-center justify-center border border-white/5">
        <div className="flex flex-col items-center gap-2">
          <div className="w-4 h-4 border border-white/20 rounded-full animate-ping" />
-         <span className="text-[8px] font-mono text-white/20 uppercase tracking-[0.2em]">Searching for Signal...</span>
+         <span className="text-[8px] font-mono text-white/20 uppercase tracking-[0.2em]">Signal Offline...</span>
        </div>
     </div>
   );
