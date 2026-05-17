@@ -1,9 +1,9 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { StreamPlayer } from './StreamPlayer';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Maximize2, Volume2, VolumeX, AlertCircle } from 'lucide-react';
+import { Maximize2, Volume2, AlertCircle } from 'lucide-react';
 import { useStreamStore } from '@/store/useStreamStore';
 import { Channel } from '@/data/channels';
 import { clsx, type ClassValue } from 'clsx';
@@ -34,12 +34,11 @@ export const VideoTile: React.FC<VideoTileProps> = ({ channel, isFeatured }) => 
   const isActiveAudio = activeAudioId === channel.id;
   const isMuted = !isActiveAudio && !(isHovered && !activeAudioId);
 
-  // We keep all tiles in the DOM to avoid "blinking" and hydration issues
+  // Keep tiles in DOM to prevent hydration issues
   const isHiddenByFocus = focusedId !== null && focusedId !== channel.id;
 
   return (
     <motion.div
-      // Remove layoutId for now to prioritize stability over animation
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onClick={() => setActiveAudioId(channel.id)}
@@ -48,7 +47,7 @@ export const VideoTile: React.FC<VideoTileProps> = ({ channel, isFeatured }) => 
         isFeatured && "ring-2 ring-accent/30",
         isActiveAudio && "active-audio",
         isHovered && !isActiveAudio && "border-white/20",
-        isHiddenByFocus && "opacity-20 scale-95 grayscale pointer-events-none" // Dim other tiles instead of deleting them
+        isHiddenByFocus && "opacity-20 scale-95 grayscale pointer-events-none"
       )}
     >
       {/* Tactical Header */}
@@ -78,10 +77,13 @@ export const VideoTile: React.FC<VideoTileProps> = ({ channel, isFeatured }) => 
         {!hasError ? (
           <StreamPlayer
             videoId={channel.videoId}
+            channelId={channel.channelId}
+            dmId={channel.dmId}
+            webUrl={channel.webUrl}
+            hlsUrl={channel.hlsUrl}
+            streams={channel.streams}
             playing={true}
             muted={isMuted || isMutedAll}
-            width="100%"
-            height="100%"
           />
         ) : (
           <div className="flex flex-col items-center gap-2 text-white/40">
