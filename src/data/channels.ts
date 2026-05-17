@@ -54,31 +54,19 @@ export const channels: Channel[] = [
     category: 'local',
     videoId: 'D9Bg7MPrFwU',
   },
-  // SLOT 7: Jamuna TV
+  // SLOT 7: Independent TV (Bangladesh 24/7)
   {
-    id: 'jamuna-tv',
-    name: 'Jamuna TV',
+    id: 'independent-tv',
+    name: 'Independent TV',
     category: 'local',
-    streams: {
-      primary: "https://jamunatv.fstream.online/jamunatv/index.m3u8",
-      backups: [
-        "https://live-cdn.jagobd.com/jamuna/index.m3u8",
-        "https://jamuna-live-cdn.jagobd.com/c3VydmVyX8RpbWU9MTcvMDQvMjAxNCAxMTo1Mjo0MSBBTSZoYXNoPWEwMDU0ODYzMTRiMmNmYTU1OWUyMWZlYWNjM2YwZmFi/jamuna/index.m3u8"
-      ]
-    }
+    channelId: 'UC1kEq9zZAXI4z2lIav-h5zQ',
   },
-  // SLOT 8: Somoy TV
+  // SLOT 8: Channel 24 (Bangladesh 24/7)
   {
-    id: 'somoy-tv',
-    name: 'Somoy TV',
+    id: 'channel-24',
+    name: 'Channel 24',
     category: 'local',
-    streams: {
-      primary: "https://somoytv.fstream.online/somoytv/index.m3u8",
-      backups: [
-        "https://shaka.somoynews.tv/live/somoy.m3u8",
-        "https://live-cdn.jagobd.com/somoy/index.m3u8"
-      ]
-    }
+    channelId: 'UC4sL1PqH_dJmI3F9Vj15NlA',
   },
   {
     id: 'india-tv',
