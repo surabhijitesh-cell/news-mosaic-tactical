@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { Volume2, VolumeX, Maximize2, X, Activity, Shield, Zap } from 'lucide-react';
 import { channels as initialChannels, Channel } from '@/data/channels';
 import { StreamPlayer } from '@/components/dashboard/StreamPlayer';
+import { LiveTranslator } from '@/components/dashboard/LiveTranslator';
 import { useStreamStore } from '@/store/useStreamStore';
 
 export default function Home() {
@@ -161,8 +162,16 @@ export default function Home() {
                   </button>
                 </div>
               </div>
-              <div className="w-full h-full grayscale-[0.2] group-hover:grayscale-0 transition-all duration-500">
+              <div className="w-full h-full grayscale-[0.2] group-hover:grayscale-0 transition-all duration-500 relative">
                 <StreamPlayer videoId={channel.videoId} channelId={channel.channelId} dmId={channel.dmId} hlsUrl={channel.hlsUrl} webUrl={channel.webUrl} streams={channel.streams} muted={!isActive} />
+                {channel.translation?.enabled && (
+                  <LiveTranslator 
+                    channelId={channel.id} 
+                    isActive={isActive} 
+                    sourceLang={channel.translation.sourceLanguage}
+                    targetLang={channel.translation.targetLanguage}
+                  />
+                )}
               </div>
               <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-white/5 overflow-hidden">
                  {isActive && <div className="h-full bg-red-600 w-full animate-pulse" />}
@@ -192,6 +201,14 @@ export default function Home() {
           <div className="absolute inset-0 flex items-center justify-center p-4">
              <div className="w-full h-full max-w-[90vw] max-h-[90vh] relative border border-white/10">
                 <StreamPlayer videoId={focusedChannel.videoId} channelId={focusedChannel.channelId} dmId={focusedChannel.dmId} hlsUrl={focusedChannel.hlsUrl} webUrl={focusedChannel.webUrl} streams={focusedChannel.streams} muted={false} />
+                {focusedChannel.translation?.enabled && (
+                  <LiveTranslator 
+                    channelId={focusedChannel.id} 
+                    isActive={true} 
+                    sourceLang={focusedChannel.translation.sourceLanguage}
+                    targetLang={focusedChannel.translation.targetLanguage}
+                  />
+                )}
                 <div className="absolute top-8 right-8 pointer-events-auto">
                    <button onClick={() => setFocusedId(null)} className="p-2 bg-white/5 hover:bg-red-600 hover:text-white text-white/40 rounded-full transition-all border border-white/10">
                      <X className="w-6 h-6" />
