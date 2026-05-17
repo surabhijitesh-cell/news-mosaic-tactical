@@ -26,12 +26,12 @@ export interface Channel {
 
 export const channels: Channel[] = [
   // English National (5)
-  // SLOT 1: Northeast Live
+    // SLOT 1: Northeast Live
   {
     id: 'northeast-live',
     name: 'Northeast Live',
     category: 'english',
-    channelId: 'UCt3tlVHWxa0rojahYIKJI_w',
+    videoId: 'bRD7ViAnzdc', // Changed from channelId back to a direct videoId
   },
   {
     id: 'ndtv-india',
